@@ -9,13 +9,13 @@ document.getElementById("copy").addEventListener("click", () => {
 });
 
 function update() {
-    let emoji = document.getElementById("emoji").value;
-    let font = document.getElementById("font").value;
-    document.getElementById("output").value = generateHTML(emoji, font);
+    const emoji = document.getElementById("emoji").value;
+    const size = document.getElementById("font-size").value;
+    document.getElementById("output").value = generateHTML(emoji, size);
 }
 
-function generateHTML(emoji, font) {
-    let y = font / 3 + 51 + 2 / 3;
-    let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="${y.toFixed(2)}" font-size="${font}" text-anchor="middle">${emoji.trim()}</text></svg>`;
-    return `<link rel="icon" href="data:image/svg+xml,${svg.replaceAll(`"`, "%22")}">`;
+function generateHTML(emoji, size) {
+    const y = size / 3 + 51 + 2 / 3;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="${y.toFixed(2)}" font-size="${size}" text-anchor="middle">${emoji.trim()}</text></svg>`;
+    return `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(svg)}">`;
 }
